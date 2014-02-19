@@ -1,3 +1,4 @@
+.PHONY : package
 package:
 	@pear channel-discover sinkcup.github.io/pear; onion build --pear;
 install:
@@ -6,5 +7,6 @@ uninstall:
 	@pear uninstall sinkcup/PEAR2_Services_Sms;
 test:
 	@phpunit ./tests/
+.PHONY : docs
 docs:
-	@rm -rf ./docs/*; phpdoc -d ./src/ -t ./docs --template abstract;
+	@rm -rf ./docs/*.html; phpdoc -d ./src/ -t ./docs --template abstract;
