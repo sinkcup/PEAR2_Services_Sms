@@ -32,8 +32,23 @@ class SmsTest extends PHPUnit_Framework_TestCase
         //'senderIDNumeric' => '8615312159527',
     );
 
+    private $bulletin = array(
+        'userId'    => '',
+        'password'    => '',
+    );
+
+    public function testSendBulletin()
+    {
+        echo __FUNCTION__ . "\n";
+        $c = new \PEAR2\Services\Sms('bulletin', $this->bulletin);
+        $r = $c->send('+8615312159527', 'hello 2014, bulletin');
+        var_dump($r);
+        $this->assertEquals(true, $r);
+    }
+ 
     public function testSendMblox()
     {
+        echo __FUNCTION__ . "\n";
         $c = new \PEAR2\Services\Sms('mblox', $this->mblox);
         $r = $c->send('+8615312159527', 'hello USA, mblox');
         sleep(1);
@@ -42,6 +57,7 @@ class SmsTest extends PHPUnit_Framework_TestCase
  
     public function testSendBechsms()
     {
+        echo __FUNCTION__ . "\n";
         $c = new \PEAR2\Services\Sms('bechsms', $this->bechsms);
         $r = $c->send('+8615312159527', '注册校验码：2013。如非本人操作，请忽略本短信。');
         $this->assertEquals(true, $r);
